@@ -1,0 +1,11 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-list {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 350px;
+  min-width: 150px;
+}

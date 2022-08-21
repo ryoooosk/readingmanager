@@ -1,0 +1,5 @@
+<h3>メッセージログ</h3>
+  <div class="messagelog" *ngIf="messageService.messages.length">
+    <button class="clear" (click)="messageService.clear()">クリア</button>
+    <div *ngFor="let message of messageService.messages">{{ message }}</div>
+  </div>

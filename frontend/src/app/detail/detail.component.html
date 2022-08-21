@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <div class="menu-bar">
+    <button mat-stroked-button routerLink="/dashboard" color="warn">Register</button>
+    <button mat-stroked-button routerLink="/booklist" color="warn">Booklist</button>
+  </div>
+</div>
+
+<form [formGroup]="bookForm" (ngSubmit)="save()">
+  <div *ngIf="book">
+
+    <div class="book-detail">
+      <label for="title">
+        <h3>Title: {{ book.title }}</h3>
+        変更: <input type="text" [(ngModel)]="book.title" value="{{book.title}}" formControlName="title">
+      </label>
+    </div>
+
+    <div class="book-detail">
+      <label for="author">
+        <h3>Author: {{ book.author }}</h3>
+        変更: <input type="text" [(ngModel)]="book.author" value="{{book.author}}" formControlName="author">
+      </label>
+    </div>
+
+    <div class="book-detail">
+      <label for="published_date">
+        <h3>Published Year: {{ book.published_date }}年</h3>
+        変更: <input type="number" [(ngModel)]="book.published_date" max="{{ nowYear }}" value="{{book.published_date}}" formControlName="publishedDate">
+      </label>
+    </div>
+
+    <div class="book-detail">
+      <label for="memorandum">
+        <h3>Memorandum: {{ book.memorandum }}</h3>
+        <textarea name="memorandum" cols="30" rows="5" formControlName="memorandum">{{ book.memorandum }}</textarea><br>
+      </label>
+    </div>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Update</button>
+
+  </div>
+</form>
+<br>
+<button mat-raised-button color="warn" (click)="delete(book)">Delete</button>
+
+<app-message></app-message>

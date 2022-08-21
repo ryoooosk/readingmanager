@@ -1,0 +1,17 @@
+.book-detail {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin: 5px 0;
+}
+
+.book-detail input {
+  max-width: 350px;
+  min-width: 200px;
+}
+
+.book-detail textarea {
+  min-width: 240px;
+  max-width: 350px;
+}

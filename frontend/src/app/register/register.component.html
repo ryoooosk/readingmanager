@@ -1,0 +1,62 @@
+<main class="register">
+  <h3>Register Form</h3>
+  <form
+    [formGroup]="bookForm"
+    (ngSubmit)="register()"
+    class="form-group"
+  >
+
+    <!-- <div class="form-list">
+      <label for="title">Title: </label><br>
+      <input #bookTitle name="title" type="text" formControlName="title">
+    </div> -->
+    <mat-form-field class="form-list" appearance="fill">
+      <mat-label for="title">Title</mat-label>
+      <input matInput #bookTitle name="title" type="text" formControlName="title" placeholder="羊をめぐる冒険">
+      <mat-error>
+        タイトルは<strong>必須です</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <div class="form-list">
+      <label for="author">Author: </label><br>
+      <input #bookAuthor name="author" type="text" formControlName="author">
+    </div> -->
+    <mat-form-field class="form-list" appearance="fill">
+      <mat-label for="author">Author</mat-label>
+      <input matInput #bookAuthor name="author" type="text" formControlName="author" placeholder="村上春樹">
+      <mat-error>
+        著者は<strong>必須です</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <div class="form-list">
+      <label for="published_date">Published Year: </label><br>
+      <input #bookPublishedDate name="published_date" type="number" max="{{ nowYear }}" formControlName="publishedDate">年
+    </div> -->
+    <mat-form-field class="form-list" appearance="fill">
+      <mat-label for="published_date">Published Year</mat-label>
+      <input matInput #bookPublishedDate name="published_date" type="number" max="{{ nowYear }}" formControlName="publishedDate">
+      <mat-error>
+        出版年は<strong>必須です</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <div class="form-list">
+      <label for="memorandum">Memorandum: </label><br>
+      <textarea #bookMemorandum name="memorandum" cols="30" rows="10" formControlName="memorandum"></textarea>
+    </div> -->
+    <mat-form-field class="form-list" appearance="fill">
+      <mat-label>Memorandum</mat-label>
+      <textarea matInput #bookMemorandum name="memorandum" formControlName="memorandum"></textarea>
+    </mat-form-field>
+
+    <!-- <div>
+      <button type="submit" (click)="bookTitle.value='';bookAuthor.value='';bookPublishedDate.value='';bookMemorandum.value=''">Register</button>
+    </div> -->
+    <div>
+      <button mat-raised-button type="submit" [disabled]="bookForm.status == 'INVALID'" (click)="bookTitle.value='';bookAuthor.value='';bookPublishedDate.value='';bookMemorandum.value=''" color="primary">Register</button>
+    </div>
+
+  </form>
+</main>
