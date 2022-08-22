@@ -4,15 +4,16 @@ import { BooklistComponent } from './booklist/booklist.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DetailComponent } from './detail/detail.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
 
 
 const Routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'signup', component: SignUpComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'signup', component: SignUpComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'booklist', component: BooklistComponent },
-  { path: 'book-detail/delete', redirectTo: '/booklist', pathMatch: 'full'},
-  { path: 'book-detail/:id', component: DetailComponent},
+  { path: 'book-detail/:id', component: DetailComponent },
+  { path: '**', component: NotFoundComponent }
 ]
 
 @NgModule({

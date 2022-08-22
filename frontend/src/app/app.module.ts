@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { MessageComponent } from './message/message.component';
 import { BooklistComponent } from './booklist/booklist.component';
-import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DetailComponent } from './detail/detail.component';
 import { SearchBooksComponent } from './search-books/search-books.component';
-
-import { MaterialModule } from './material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignUpComponent } from './sign-up/sign-up.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './material.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -31,14 +28,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule,
     MaterialModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule
+    SharedModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

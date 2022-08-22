@@ -9,29 +9,3 @@
 a {
   text-decoration: none;
 }
-
-header {
-  margin-bottom: 20px;
-  padding-left: 3%;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  background-color: #4751B1;
-}
-header h2 {
-  margin: 30px 0;
-  color: white;
-  letter-spacing: 0.05em;
-}
-.menu-bar {
-  margin-right: 40px;
-  margin-bottom: 30px;
-}
-
-.title {
-  color: black;
-  cursor: pointer;
-}
-.title h2 {
-  margin-bottom: 30px;
-}
