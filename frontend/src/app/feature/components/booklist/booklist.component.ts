@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../book.service';
-import { Book } from '../../../book';
 
 import { CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
