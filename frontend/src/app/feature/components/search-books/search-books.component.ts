@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../book';
-import { BookService } from '../book.service';
+import { Book } from '../../../book';
+import { BookService } from '../../../book.service';
 import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { MessageService } from '../message.service';
+import { MessageService } from '../../../message.service';
 
 @Component({
   selector: 'app-search-books',
