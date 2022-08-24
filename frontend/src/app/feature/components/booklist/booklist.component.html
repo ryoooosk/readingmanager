@@ -1,6 +1,6 @@
 <div class="menu-bar">
   <button mat-stroked-button routerLink="/dashboard" color="warn">Register</button>
-  <button mat-stroked-button routerLink="/booklist" color="warn">Booklist</button>
+  <button mat-stroked-button routerLink="/dashboard/booklist" color="warn">Booklist</button>
 </div>
 
 <h3>Booklist All</h3>
@@ -22,7 +22,7 @@
   <mat-card>
     <a
       class="booklist"
-      routerLink="/book-detail/{{ book.id }}"
+      routerLink="/dashboard/book-detail/{{ book.id }}"
     >
       <h3 class="book">{{ book.title }} / {{ book.author }} / {{ book.published_date }}</h3>
     </a>

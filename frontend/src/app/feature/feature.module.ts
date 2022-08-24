@@ -9,7 +9,7 @@ import { SearchBooksComponent } from './components/search-books/search-books.com
 
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
-import { AppRoutingModule } from '../app-routing.module';
+import { FeatureRoutingModule } from './feature-routing.module';
 
 // 特定のページを集めたモジュール
 
@@ -25,8 +25,7 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     SharedModule,
     CoreModule,
-    // FeatureRoutingModuleを設定する↓
-    AppRoutingModule,
+    FeatureRoutingModule
   ],
   exports: [
     BooklistComponent,

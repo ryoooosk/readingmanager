@@ -6,12 +6,12 @@
 
   <ul *ngIf="booksTitle$">
     <li *ngFor="let book of booksTitle$ | async">
-      <a routerLink="/book-detail/{{ book.id }}">{{ book.title }} / {{ book.author }}</a>
+      <a routerLink="/dashboard/book-detail/{{ book.id }}">{{ book.title }} / {{ book.author }}</a>
     </li>
   </ul>
   <ul *ngIf="booksAuthor$">
     <li *ngFor="let book of booksAuthor$ | async">
-      <a routerLink="/book-detail/{{ book.id }}">{{ book.title }} / {{ book.author }}</a>
+      <a routerLink="/dashboard/book-detail/{{ book.id }}">{{ book.title }} / {{ book.author }}</a>
     </li>
   </ul>
 </div>

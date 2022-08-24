@@ -7,7 +7,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { FeatureModule } from './feature/feature.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,10 +18,11 @@ import { FeatureModule } from './feature/feature.module';
   ],
   imports: [
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    FeatureModule
   ],
   providers: [],
   bootstrap: [AppComponent]
