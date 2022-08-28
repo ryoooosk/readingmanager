@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bookmanager-b594a": {
+      "hosting": {
+        "frontend": [
+          "bookmanager-b594a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bookmanager-b594a"
+  }
+}
