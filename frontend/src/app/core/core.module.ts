@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { getApp, provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth, } from '@angular/fire/auth';
+import { getDatabase } from "firebase/database";
+
 
 // 一度だけ取り込むモジュール
 

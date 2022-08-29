@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 
-// AngularFire
 import { Auth } from '@angular/fire/auth';
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
 
-  constructor(private afAuth: Auth) {
-    // デベロッパーツールで確認できる
-    this.afAuth.onAuthStateChanged(user => console.log(user));
-  }
+export class UserService {
+
+  constructor(private afAuth: Auth) { }
 
   create(email: string, password: string): Promise<void> {
     return createUserWithEmailAndPassword(this.afAuth, email, password)
@@ -30,14 +27,16 @@ export class AuthService {
   //   .then((credential) => credential)
   //   .catch((error) => error)
 
-  login(email: string, password: string): any {
-    return signInWithEmailAndPassword(this.afAuth, email, password)
-      .catch(error => console.error(error));
-  }
-
-  logout(): Promise<void> {
-    return signOut(this.afAuth);
-  }
-
+  // // ?があると省略が可能
+  // update(values: { displayName?: string, photoURL?: string }): Promise<void> {
+  //   return this.afAuth.currentUser.then((user) => {
+  //     if(user) {
+  //       user.updateProfile(values)
+  //         .then(() => this.db.object(`/users/${user.uid}`).update(values))
+  //     }
+  //   });
+  // }
 
 }
+
+

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
-import { AuthService } from '../core/service/auth.service';
+import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
 
   signup(form): void {
     this.user = form.value;
-    this.authService.create(this.user.email, this.user.password)
+    this.userService.create(this.user.email, this.user.password)
       .then(() => this.router.navigateByUrl('/users/new'));
 
     alert(JSON.stringify(this.user));
