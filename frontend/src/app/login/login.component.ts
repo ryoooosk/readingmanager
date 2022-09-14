@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm): void {
-    this.user = form.value;
+    // this.user = form.value;
+    // ↑[(ngModel)]を使ってるので既にuserに<input>の値が代入されているので不必要
     this.authService.login(this.user.email, this.user.password)
       .then(() => this.router.navigateByUrl('/'));
   }

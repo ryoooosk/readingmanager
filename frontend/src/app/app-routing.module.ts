@@ -15,7 +15,7 @@ const Routes: Routes = [
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule)},
   { path: 'signup', component: SignUpComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule), canActivateChild: [LoginGuard] },
+  { path: 'dashboard', loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule), canActivateChild : [LoginGuard] },
   { path: '**', component: NotFoundComponent }
 ]
 

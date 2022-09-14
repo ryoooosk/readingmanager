@@ -2,6 +2,6 @@
   <a class="title" routerLink="/">
     <h2>BookManager</h2>
   </a>
-  <a *ngIf="!isLogin" class="header-right" routerLink="/signup">SignUP</a>
-  <a *ngIf="isLogin" class="header-right" routerLink="/" (click)="logout()">Logout</a>
+  <button *ngIf="!isLogin" class="header-right" routerLink="/signup">SignUP</button>
+  <button *ngIf="isLogin" class="header-right" (click)="logout()">Logout</button>
 </header>

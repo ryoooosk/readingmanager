@@ -27,7 +27,7 @@ export class LoginGuard implements CanActivate, CanActivateChild {
       map((user) => {
         if(user) { return true; }
         else {
-          alert("ログインまたはアカウント登録してください");
+          alert("ログインまたはアカウント登録をしてください");
           this.router.navigateByUrl('/login');
           return false;
         }

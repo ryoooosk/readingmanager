@@ -29,4 +29,5 @@ header h2 {
 
 .header-right {
   margin-right: 15px;
+  cursor: pointer;
 }

@@ -14,7 +14,8 @@ export class AuthService {
     this.afAuth.onAuthStateChanged(user => console.log(user));
   }
 
-  login(email: string, password: string): any {
+  login(email: string, password: string): any{
+  // catchメソッドが使用された場合返り値がないため voidも指定
     return signInWithEmailAndPassword(this.afAuth, email, password)
       .catch(error => console.error(error));
   }

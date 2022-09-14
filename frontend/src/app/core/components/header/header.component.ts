@@ -20,11 +20,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     // ログイン状態を確認。
+    this.afAuth.onAuthStateChanged((user) => {
     // onAuthStateChanged ログインが切り替わる度に実行されるコールバックを引数に受け取る
     // userオブジェクトはログインしている状態でしか渡ってこない
-    // isLogin プロパティにはuserオブジェクトがある場合はtrueに、反対はfalseとなる
-    this.afAuth.onAuthStateChanged((user) => {
       this.isLogin = !!user;
+      // [!!]で真偽値に変換
+      // isLogin プロパティにはuserオブジェクトがある場合はtrueに、反対はfalseとなる
     });
   }
 
