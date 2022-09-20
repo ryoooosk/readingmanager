@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,9 @@ Route::prefix('book')->group(function() {
     Route::get('/{id}', [BookController::class, 'get']);
     Route::delete('/delete/{id}', [BookController::class, 'delete']);
     Route::put('/update/{id}', [BookController::class, 'update']);
+});
+
+Route::prefix('user')->group(function() {
+    Route::post('/register', [UserController::class, 'userRegister']);
+    Route::put('/register/displayName', [UserController::class, 'registerDisplayname']);
 });

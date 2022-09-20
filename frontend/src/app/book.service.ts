@@ -34,6 +34,7 @@ export class BookService {
   }
 
   registerBook(book: Book): Observable<Book> {
+    // currentUserで現在ログインしているユーザーを取得し、uidをbookに追加してpost送信したい。
     return this.http.post<Book>(this.apiUrl, JSON.stringify(book), this.httpOptions)
       .pipe(
         tap((newBook: Book) => this.log(`書籍データ(title=${newBook.title})を追加しました`)),

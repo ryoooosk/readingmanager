@@ -15,4 +15,8 @@ class Book extends Model
         'published_date',
         'memorandum',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
