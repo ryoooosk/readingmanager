@@ -38,9 +38,8 @@ export class UserService {
         };
         // sendEmailVerification(user, actionCodeSettings);
         // actionCodeSettingsをオプションにすると、認証画面がら指定URLに飛べる
-        const userpost = {uid: user.uid, email: user.email};
-        console.log(user);
-        this.http.post(`${this.apiUrl}register`, userpost, this.httpOptions)
+        const createuser = {uid: user.uid, email: user.email};
+        this.http.post(`${this.apiUrl}register`, createuser, this.httpOptions)
           .subscribe(_ => console.log('New uid is added!'))
         // this.db.object(`/users/${user.uid}`).set({ uid: user.uid, email: user.email });
         // データベースにuser情報を登録する。Laravelデータベース側でuserテーブルを作っておき、bookテーブルとリレーションさせればできそう
@@ -61,7 +60,7 @@ export class UserService {
           user.updateProfile(values)
             .then(() => {
               console.log(values);
-              this.http.put(`${this.apiUrl}register/displayName`, values, this.httpOptions)
+              this.http.put(`${this.apiUrl}register/${user.uid}/displayName`, values, this.httpOptions)
                 .subscribe(_ => console.log('New displayName is added!'));
           })
             // .then(() => {this.http.put(`/users/${user.uid}`).update(values)})

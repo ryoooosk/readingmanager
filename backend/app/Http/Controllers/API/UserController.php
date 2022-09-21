@@ -18,10 +18,11 @@ class UserController extends Controller
         return response()->json($data, 200);
     }
 
-    public function registerDisplayname(Request $request) {
+    public function registerDisplayname(Request $request, $uid) {
         $data['displayName'] = $request['displayName'];
         // $data['photoURL'] = $request['photoURL'];
-        User::create($data);
+        User::where("user_id",$uid)->update($data);
+        // findメソッドはidカラムを検索？？
         return response()->json($data, 200);
     }
 }

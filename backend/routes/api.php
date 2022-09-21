@@ -33,5 +33,5 @@ Route::prefix('book')->group(function() {
 
 Route::prefix('user')->group(function() {
     Route::post('/register', [UserController::class, 'userRegister']);
-    Route::put('/register/displayName', [UserController::class, 'registerDisplayname']);
+    Route::put('/register/{uid}/displayName', [UserController::class, 'registerDisplayname']);
 });
