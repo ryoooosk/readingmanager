@@ -52,7 +52,7 @@ export class BookService {
   }
 
   getBook(id: number): Observable<Book> {
-    const url = `${this.apiUrl}${id}`;
+    const url = `${this.apiUrl}${this.currentUser.uid}/${id}`;
     return this.http.get<Book>(url)
       .pipe(
         tap(book => this.log(`書籍データ(title = ${book.title})を取得しました`)),

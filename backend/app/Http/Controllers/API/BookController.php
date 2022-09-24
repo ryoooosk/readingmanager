@@ -14,13 +14,15 @@ class BookController extends Controller
 {
     public function getAll($user_id) {
         $id = User::where("user_id", $user_id)->value('id');
+        // with関数でuserテーブル（リレーション）を指定
         $data = Book::with('user')->where('user_id', $id)->get();
         return response()->json($data, 200);
     }
 
-    public function get($id) {
-        $data = Book::find($id);
-        return response()->json($data);
+    public function get($user_id, $id) {
+        $uid = User::where("user_id", $user_id)->value('id');
+        $data = Book::with('user')->where('user_id', $uid)->find($id);
+        return response()->json($data, 200);
     }
 
     public function register(Request $request) {
