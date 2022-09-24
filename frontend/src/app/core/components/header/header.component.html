@@ -2,6 +2,7 @@
   <a class="title" routerLink="/">
     <h2>BookManager</h2>
   </a>
+  <p>こんにちは {{ this.currentUser }} さん</p>
   <button *ngIf="!isLogin" class="header-right" routerLink="/signup">SignUP</button>
   <button *ngIf="isLogin" class="header-right" (click)="logout()">Logout</button>
 </header>

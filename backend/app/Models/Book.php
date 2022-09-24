@@ -14,6 +14,7 @@ class Book extends Model
         'author',
         'published_date',
         'memorandum',
+        'user_id'
     ];
 
     public function user() {

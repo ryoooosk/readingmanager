@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Auth } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, sendEmailVerification, getAuth } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, subscribeOn, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +15,6 @@ export class UserService {
   constructor(
     private afAuth: Auth,
     private anAuth: AngularFireAuth,
-    // private db: AngularFireDatabase,
     private http: HttpClient
   ) { }
 

@@ -26,6 +26,7 @@ class BookController extends Controller
         $data['author'] = $request['author'];
         $data['published_date'] = $request['publishedDate'];
         $data['memorandum'] = $request['memorandum'];
+        $data['user_id'] = $request['uid'];
         Book::create($data);
         return response()->json($data, 200);
     }

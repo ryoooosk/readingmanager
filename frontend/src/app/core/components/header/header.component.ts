@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
 
   isLogin: boolean;
+  currentUser: string;
 
   constructor(
     private afAuth: Auth,
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
       this.isLogin = !!user;
       // [!!]で真偽値に変換
       // isLogin プロパティにはuserオブジェクトがある場合はtrueに、反対はfalseとなる
+      this.currentUser = user.displayName;
     });
   }
 

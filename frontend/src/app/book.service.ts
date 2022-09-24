@@ -6,6 +6,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { MessageService } from './message.service';
 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { getAuth } from 'firebase/auth';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +24,12 @@ export class BookService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private anAuth: AngularFireAuth
   ) { }
+
+  private auth = getAuth();
+  private currentUser = this.auth.currentUser;
 
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.apiUrl)
@@ -33,11 +40,14 @@ export class BookService {
       );
   }
 
-  registerBook(book: Book): Observable<Book> {
+  registerBook(book: Book | any): Observable<Book> {
     // currentUserで現在ログインしているユーザーを取得し、uidをbookに追加してpost送信したい。
-    return this.http.post<Book>(this.apiUrl, JSON.stringify(book), this.httpOptions)
+    book.uid = this.currentUser.uid;
+    const registerData = book;
+    return this.http.post(this.apiUrl, JSON.stringify(registerData), this.httpOptions)
       .pipe(
         tap((newBook: Book) => this.log(`書籍データ(title=${newBook.title})を追加しました`)),
+        tap(_ => console.log(registerData)),
         catchError(this.handleError<Book>('registerBook'))
       );
   }
