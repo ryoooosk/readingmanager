@@ -27,7 +27,9 @@ export class HeaderComponent implements OnInit {
       this.isLogin = !!user;
       // [!!]で真偽値に変換
       // isLogin プロパティにはuserオブジェクトがある場合はtrueに、反対はfalseとなる
-      this.currentUser = user.displayName;
+      if(user) {
+        this.currentUser = user.displayName;
+      }
     });
   }
 

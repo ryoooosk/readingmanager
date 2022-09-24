@@ -15,4 +15,9 @@ class User extends Model
         'displayName',
         'photoURL'
     ];
+
+    public function book() {
+        return $this->hasMany(Book::class, 'user_id', 'id');
+    }
+
 }

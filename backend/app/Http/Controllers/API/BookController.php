@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Book;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Log;
 
@@ -11,8 +12,9 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function getAll() {
-        $data = Book::all();
+    public function getAll($user_id) {
+        $id = User::where("user_id", $user_id)->value('id');
+        $data = Book::with('user')->where('user_id', $id)->get();
         return response()->json($data, 200);
     }
 
@@ -26,7 +28,7 @@ class BookController extends Controller
         $data['author'] = $request['author'];
         $data['published_date'] = $request['publishedDate'];
         $data['memorandum'] = $request['memorandum'];
-        $data['user_id'] = $request['uid'];
+        $data['user_id'] = User::where("user_id", $request['uid'])->value('id');
         Book::create($data);
         return response()->json($data, 200);
     }

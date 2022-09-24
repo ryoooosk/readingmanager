@@ -32,7 +32,7 @@ export class BookService {
   private currentUser = this.auth.currentUser;
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.apiUrl)
+    return this.http.get<Book[]>(`${this.apiUrl}${this.currentUser.uid}`)
       .pipe(
         tap(_ => this.log('書籍情報を取得しました')),
         tap(books => this.books = books),
@@ -41,7 +41,6 @@ export class BookService {
   }
 
   registerBook(book: Book | any): Observable<Book> {
-    // currentUserで現在ログインしているユーザーを取得し、uidをbookに追加してpost送信したい。
     book.uid = this.currentUser.uid;
     const registerData = book;
     return this.http.post(this.apiUrl, JSON.stringify(registerData), this.httpOptions)
