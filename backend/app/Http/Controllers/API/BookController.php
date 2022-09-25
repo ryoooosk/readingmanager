@@ -12,16 +12,16 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function getAll($user_id) {
-        $id = User::where("user_id", $user_id)->value('id');
+    public function getAll($uid) {
+        $user_id = User::where("user_id", $uid)->value('id');
         // with関数でuserテーブル（リレーション）を指定→where(カラム名, 検索値)で指定
-        $data = Book::with('user')->where('user_id', $id)->get();
+        $data = Book::with('user')->where('user_id', $user_id)->get();
         return response()->json($data, 200);
     }
 
-    public function get($user_id, $id) {
-        $uid = User::where("user_id", $user_id)->value('id');
-        $data = Book::with('user')->where('user_id', $uid)->find($id);
+    public function get($uid, $id) {
+        $user_id = User::where("user_id", $uid)->value('id');
+        $data = Book::with('user')->where('user_id', $user_id)->find($id);
         return response()->json($data, 200);
     }
 
@@ -48,12 +48,12 @@ class BookController extends Controller
         return response()->json($data, 200);
     }
 
-    public function search(Request $request, $user_id) {
+    public function search(Request $request, $uid) {
         $titleKeyword = $request->input('title');
         $authorKeyword = $request->input('author');
-        $uid = User::where("user_id", $user_id)->value('id');
-        $data = Book::with('user')->where('user_id', $uid)->where("title", 'like', "%{$titleKeyword}%")->get();
-        $data = Book::with('user')->where('user_id', $uid)->where("author", 'like', "%{$authorKeyword}%")->get();
+        $user_id = User::where("user_id", $uid)->value('id');
+        $data = Book::with('user')->where('user_id', $user_id)->where("title", 'like', "%{$titleKeyword}%")->get();
+        $data = Book::with('user')->where('user_id', $user_id)->where("author", 'like', "%{$authorKeyword}%")->get();
         return response()->json($data, 200);
     }
 }
