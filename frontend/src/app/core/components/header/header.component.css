@@ -5,29 +5,30 @@ a {
 
 header {
   margin-bottom: 20px;
-  padding-left: 3%;
+  padding: 0 3%;
   align-items: center;
   display: flex;
   justify-content: space-between;
   background-color: #4751B1;
+  color: white;
 }
 
-header h2 {
-  margin: 30px 0;
-  color: white;
+.title h2 {
+  margin: 30px 0 30px 0;
   letter-spacing: 0.05em;
 }
 
 .title {
-  color: black;
   cursor: pointer;
-}
-
-.title h2 {
-  margin-bottom: 30px;
 }
 
 .header-right {
-  margin-right: 15px;
+  display: flex;
   cursor: pointer;
+  gap: 20px;
+}
+
+.header-right button {
+  display: inline-block;
+  margin: 16px 0;
 }
