@@ -23,7 +23,7 @@ use App\Http\Controllers\API\UserController;
 
 // prefix <- urlの接頭辞をグループ化して設定するメソッド
 Route::prefix('book')->group(function() {
-    Route::get('/search', [BookController::class, 'search']);
+    Route::get('/{user_id}/search/', [BookController::class, 'search']);
     Route::get('/{user_id}', [BookController::class, 'getAll']);
     Route::post('/', [BookController::class, 'register']);
     Route::get('/{user_id}/{id}', [BookController::class, 'get']);

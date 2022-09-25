@@ -14,7 +14,7 @@ class BookController extends Controller
 {
     public function getAll($user_id) {
         $id = User::where("user_id", $user_id)->value('id');
-        // with関数でuserテーブル（リレーション）を指定
+        // with関数でuserテーブル（リレーション）を指定→where(カラム名, 検索値)で指定
         $data = Book::with('user')->where('user_id', $id)->get();
         return response()->json($data, 200);
     }
@@ -48,13 +48,12 @@ class BookController extends Controller
         return response()->json($data, 200);
     }
 
-    public function search(Request $request) {
+    public function search(Request $request, $user_id) {
         $titleKeyword = $request->input('title');
         $authorKeyword = $request->input('author');
-        $query = DB::table('books');
-        $data = $query->where("title", 'like', "%{$titleKeyword}%")->get();
-        $data = $query->where("author", 'like', "%{$authorKeyword}%")->get();
-        // dd($data);
+        $uid = User::where("user_id", $user_id)->value('id');
+        $data = Book::with('user')->where('user_id', $uid)->where("title", 'like', "%{$titleKeyword}%")->get();
+        $data = Book::with('user')->where('user_id', $uid)->where("author", 'like', "%{$authorKeyword}%")->get();
         return response()->json($data, 200);
     }
 }

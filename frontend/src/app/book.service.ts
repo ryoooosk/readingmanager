@@ -84,7 +84,7 @@ export class BookService {
     if (!word.trim()) {
       return of([]);
     }
-    return this.http.get<Book[]>(`${this.apiUrl}search?title=${word}`, this.httpOptions)
+    return this.http.get<Book[]>(`${this.apiUrl}${this.currentUser.uid}/search?title=${word}`, this.httpOptions)
       .pipe(
         tap(_ => this.log(`title = ${word} に合致する書籍を検索しました。`)),
         catchError(this.handleError<Book[]>('searchBooksTitle', []))
