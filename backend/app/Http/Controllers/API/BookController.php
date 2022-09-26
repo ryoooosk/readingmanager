@@ -15,14 +15,18 @@ class BookController extends Controller
     public function getAll($uid) {
         $user_id = User::where("user_id", $uid)->value('id');
         // with関数でuserテーブル（リレーション）を指定→where(カラム名, 検索値)で指定
-        $data = Book::with('user')->where('user_id', $user_id)->get();
+        $data = Book::where('user_id', $user_id)->get();
         return response()->json($data, 200);
     }
 
     public function get($uid, $id) {
-        $user_id = User::where("user_id", $uid)->value('id');
-        $data = Book::with('user')->where('user_id', $user_id)->find($id);
-        return response()->json($data, 200);
+        $user_id = User::where('user_id', $uid)->value('id');
+        $book_userId = Book::where('id', $id)->value('user_id');
+        // ログインユーザーのidとgetしたい投稿のuser_idが一致する場合のみデータを返す
+        if($book_userId == $user_id) {
+            $data = Book::where('user_id', $user_id)->find($id);
+            return response()->json($data, 200);
+        }
     }
 
     public function register(Request $request) {

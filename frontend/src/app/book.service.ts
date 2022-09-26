@@ -36,6 +36,7 @@ export class BookService {
       .pipe(
         tap(_ => this.log('書籍情報を取得しました')),
         tap(books => this.books = books),
+        tap(books => console.log(books)),
         catchError(this.handleError<Book[]>('getBooks', []))
       );
   }
@@ -56,6 +57,7 @@ export class BookService {
     return this.http.get<Book>(url)
       .pipe(
         tap(book => this.log(`書籍データ(title = ${book.title})を取得しました`)),
+        tap(data => console.log(data)),
         catchError(this.handleError<Book>(`getBook id=${id}`))
       );
   }
