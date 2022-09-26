@@ -27,16 +27,11 @@ export class BookService {
     private authService: AuthService
   ) { }
 
-  // auth.serviceからログインユーザー情報を持ってくる
-  // private auth = getAuth();
-  // public currentUser = this.auth.currentUser;
-
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.apiUrl}${this.authService.currentUserId}`)
       .pipe(
         tap(_ => this.log('書籍情報を取得しました')),
         tap(books => this.books = books),
-        tap(books => console.log(books)),
         catchError(this.handleError<Book[]>('getBooks', []))
       );
   }
@@ -88,7 +83,13 @@ export class BookService {
     }
     return this.http.get<Book[]>(`${this.apiUrl}${this.authService.currentUserId}/search?title=${word}`, this.httpOptions)
       .pipe(
-        tap(_ => this.log(`title = ${word} に合致する書籍を検索しました。`)),
+        tap(book => {
+          if(book.length != 0) {
+            this.log(`title = ${word} に合致する書籍を検索しました。`);
+          } else {
+            this.log('title: 合致する書籍が見つかりませんでした');
+          }
+        }),
         catchError(this.handleError<Book[]>('searchBooksTitle', []))
       );
   }
@@ -97,12 +98,19 @@ export class BookService {
     if (!word.trim()) {
       return of([]);
     }
-    return this.http.get<Book[]>(`${this.apiUrl}search?author=${word}`, this.httpOptions)
+    return this.http.get<Book[]>(`${this.apiUrl}${this.authService.currentUserId}/search?author=${word}`, this.httpOptions)
       .pipe(
-        tap(_ => this.log(`author = ${word} に合致する書籍を検索しました。`)),
+        tap(book => {
+          if(book.length != 0) {
+            this.log(`author = ${word} に合致する書籍を検索しました。`)
+          } else {
+            this.log('author: 合致する書籍が見つかりませんでした');
+          }
+        }),
         catchError(this.handleError<Book[]>('searchBooksAuthor', []))
       );
   }
+
 
   private log(message: string) {
     this.messageService.add(`BookService: ${message}`);

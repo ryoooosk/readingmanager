@@ -1,7 +1,7 @@
 <div class="search-box">
   <label for="searchBooks">
     タイトル検索：<input type="text" #searchBooksTitle (input)="search(searchBooksTitle.value)"><br>
-    著者検索：<input type="text" #searchBooksAuthor (input)="search(searchBooksAuthor.value)">
+    <!-- 著者検索：<input type="text" #searchBooksAuthor (input)="search(searchBooksAuthor.value)"> -->
   </label>
 
   <ul *ngIf="booksTitle$">
