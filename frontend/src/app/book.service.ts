@@ -6,8 +6,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { MessageService } from './message.service';
 
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getAuth } from 'firebase/auth';
 import { AuthService } from './core/services/auth.service';
 
 

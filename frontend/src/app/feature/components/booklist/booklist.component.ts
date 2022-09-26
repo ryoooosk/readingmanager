@@ -15,7 +15,6 @@ export class BooklistComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks();
-    console.log('BooklistComponent ngOnInit!');
   }
 
   getBooks(): void {

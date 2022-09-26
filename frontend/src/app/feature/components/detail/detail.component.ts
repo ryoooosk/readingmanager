@@ -34,8 +34,6 @@ export class DetailComponent implements OnInit {
       publishedDate: new FormControl('', [Validators.required, Validators.min(0)]),
       memorandum: new FormControl('', []),
     });
-
-    console.log('DetailComponent ngOnInit!');
   }
 
   getBook(): void {
