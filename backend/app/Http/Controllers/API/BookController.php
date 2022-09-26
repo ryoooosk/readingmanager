@@ -53,20 +53,17 @@ class BookController extends Controller
     }
 
     public function search(Request $request, $uid) {
-        global $keyword;
-        $keyword = $request->input('title');
-        // $authorKeyword = $request->input('author');
+        global $searchKeyword; // この変数をglobal変数にする宣言
+        $searchKeyword = $request->input('title');
         $user_id = User::where('user_id', $uid)->value('id');
-
         $data = Book::where('user_id', $user_id)
+                    // 検索条件 A and (B or C) をクロージャを使って
                     ->where(function($query) {
-                        global $keyword;
-                        $query->where("title", 'like', "%${keyword}%")
-                              ->orWhere("author", 'like', "%${keyword}%");
+                        global $searchKeyword; // ローカルでなくグローバル変数を使うという宣言
+                        $query->where("title", 'like', "%${searchKeyword}%")
+                              ->orWhere("author", 'like', "%${searchKeyword}%");
                         })
                     ->get();
-        // $data = Book::where('user_id', $user_id)->where("author", 'like', "%{$authorKeyword}%")->get();
-
         return response()->json($data, 200);
     }
 }

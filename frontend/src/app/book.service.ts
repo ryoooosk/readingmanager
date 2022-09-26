@@ -87,7 +87,7 @@ export class BookService {
           if(book.length != 0) {
             this.log(`title = ${word} に合致する書籍を検索しました。`);
           } else {
-            this.log('title: 合致する書籍が見つかりませんでした');
+            this.log(`title = ${word} に合致する書籍は見つかりませんでした`);
           }
         }),
         catchError(this.handleError<Book[]>('searchBooksTitle', []))
@@ -104,7 +104,7 @@ export class BookService {
           if(book.length != 0) {
             this.log(`author = ${word} に合致する書籍を検索しました。`)
           } else {
-            this.log('author: 合致する書籍が見つかりませんでした');
+            this.log(`author = ${word} に合致する書籍は見つかりませんでした`);
           }
         }),
         catchError(this.handleError<Book[]>('searchBooksAuthor', []))
