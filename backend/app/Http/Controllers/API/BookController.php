@@ -53,12 +53,18 @@ class BookController extends Controller
     }
 
     public function search(Request $request, $uid) {
-        $titleKeyword = $request->input('title');
-        $authorKeyword = $request->input('author');
+        global $keyword;
+        $keyword = $request->input('title');
+        // $authorKeyword = $request->input('author');
         $user_id = User::where('user_id', $uid)->value('id');
 
-        // or句を使ってタイトルと著者の同時検索できるようにしたい。
-        $data = Book::where('user_id', $user_id)->where("title", 'like', "%{$titleKeyword}%")->get();
+        $data = Book::where('user_id', $user_id)
+                    ->where(function($query) {
+                        global $keyword;
+                        $query->where("title", 'like', "%${keyword}%")
+                              ->orWhere("author", 'like', "%${keyword}%");
+                        })
+                    ->get();
         // $data = Book::where('user_id', $user_id)->where("author", 'like', "%{$authorKeyword}%")->get();
 
         return response()->json($data, 200);

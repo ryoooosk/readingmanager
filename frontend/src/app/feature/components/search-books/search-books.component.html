@@ -1,17 +1,17 @@
 <div class="search-box">
   <label for="searchBooks">
-    タイトル検索：<input type="text" #searchBooksTitle (input)="search(searchBooksTitle.value)"><br>
+    タイトル・著者検索：<input type="text" #searchBooksTitle (input)="search(searchBooksTitle.value)"><br>
     <!-- 著者検索：<input type="text" #searchBooksAuthor (input)="search(searchBooksAuthor.value)"> -->
   </label>
 
-  <ul *ngIf="booksTitle$">
-    <li *ngFor="let book of booksTitle$ | async">
+  <ul *ngIf="booksSearch$">
+    <li *ngFor="let book of booksSearch$ | async">
       <a routerLink="/dashboard/book-detail/{{ book.id }}">{{ book.title }} / {{ book.author }}</a>
     </li>
   </ul>
-  <ul *ngIf="booksAuthor$">
+  <!-- <ul *ngIf="booksAuthor$">
     <li *ngFor="let book of booksAuthor$ | async">
       <a routerLink="/dashboard/book-detail/{{ book.id }}">{{ book.title }} / {{ book.author }}</a>
     </li>
-  </ul>
+  </ul> -->
 </div>

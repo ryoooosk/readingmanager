@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 })
 export class SearchBooksComponent implements OnInit {
 
-  booksTitle$: Observable<Book[]>;
+  booksSearch$: Observable<Book[]>;
   booksAuthor$: Observable<Book[]>;
   private searchBooks = new Subject<string>();
 
@@ -24,9 +24,7 @@ export class SearchBooksComponent implements OnInit {
   //implements OnInitとなっている場合、ngOnInitが必要。
   ngOnInit(): void {
 
-    // booksTitle$とbooksAuthor$が同時に動いてしまう。
-
-    this.booksTitle$ = this.searchBooks.pipe(
+    this.booksSearch$ = this.searchBooks.pipe(
         // 入力の後、400ms待って次の実行に移る
         debounceTime(400),
         // 直前のデータと同じ場合は処理を実行しない
