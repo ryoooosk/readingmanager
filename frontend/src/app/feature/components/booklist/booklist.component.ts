@@ -11,8 +11,6 @@ import { CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export class BooklistComponent implements OnInit {
 
-  // books: Book[] = [];
-
   constructor(protected bookService: BookService) { }
 
   ngOnInit(): void {

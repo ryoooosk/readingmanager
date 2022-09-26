@@ -8,6 +8,7 @@ import { MessageService } from './message.service';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getAuth } from 'firebase/auth';
+import { AuthService } from './core/services/auth.service';
 
 
 @Injectable({
@@ -25,14 +26,15 @@ export class BookService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private anAuth: AngularFireAuth
+    private authService: AuthService
   ) { }
 
-  private auth = getAuth();
-  private currentUser = this.auth.currentUser;
+  // auth.serviceからログインユーザー情報を持ってくる
+  // private auth = getAuth();
+  // public currentUser = this.auth.currentUser;
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}${this.currentUser.uid}`)
+    return this.http.get<Book[]>(`${this.apiUrl}${this.authService.currentUserId}`)
       .pipe(
         tap(_ => this.log('書籍情報を取得しました')),
         tap(books => this.books = books),
@@ -42,7 +44,7 @@ export class BookService {
   }
 
   registerBook(book: Book | any): Observable<Book> {
-    book.uid = this.currentUser.uid;
+    book.uid = this.authService.currentUserId;
     const registerData = book;
     return this.http.post(this.apiUrl, JSON.stringify(registerData), this.httpOptions)
       .pipe(
@@ -53,7 +55,7 @@ export class BookService {
   }
 
   getBook(id: number): Observable<Book> {
-    const url = `${this.apiUrl}${this.currentUser.uid}/${id}`;
+    const url = `${this.apiUrl}${this.authService.currentUserId}/${id}`;
     return this.http.get<Book>(url)
       .pipe(
         tap(book => this.log(`書籍データ(title = ${book.title})を取得しました`)),
@@ -86,7 +88,7 @@ export class BookService {
     if (!word.trim()) {
       return of([]);
     }
-    return this.http.get<Book[]>(`${this.apiUrl}${this.currentUser.uid}/search?title=${word}`, this.httpOptions)
+    return this.http.get<Book[]>(`${this.apiUrl}${this.authService.currentUserId}/search?title=${word}`, this.httpOptions)
       .pipe(
         tap(_ => this.log(`title = ${word} に合致する書籍を検索しました。`)),
         catchError(this.handleError<Book[]>('searchBooksTitle', []))

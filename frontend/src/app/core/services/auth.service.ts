@@ -9,9 +9,16 @@ import { signOut, signInWithEmailAndPassword } from 'firebase/auth';
 })
 export class AuthService {
 
+  public currentUserId;
+
   constructor(private afAuth: Auth) {
     // デベロッパーツールで確認できる
-    this.afAuth.onAuthStateChanged(user => console.log(user));
+    this.afAuth.onAuthStateChanged(user => {
+      if(user) {
+        this.currentUserId = user.uid;
+        console.log(`uid: ${this.currentUserId}`);
+      }
+    });
   }
 
   login(email: string, password: string): any{
