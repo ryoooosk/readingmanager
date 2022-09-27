@@ -16,7 +16,7 @@ class User extends Model
         'photoURL'
     ];
 
-    public function book() {
+    public function books() {
         return $this->hasMany(Book::class, 'user_id', 'id');
     }
 

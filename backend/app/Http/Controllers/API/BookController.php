@@ -14,7 +14,6 @@ class BookController extends Controller
 {
     public function getAll($uid) {
         $user_id = User::where("user_id", $uid)->value('id');
-        // with関数でuserテーブル（リレーション）を指定→where(カラム名, 検索値)で指定
         $data = Book::where('user_id', $user_id)->get();
         return response()->json($data, 200);
     }
