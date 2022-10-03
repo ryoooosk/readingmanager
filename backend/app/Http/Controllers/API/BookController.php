@@ -9,6 +9,7 @@ use Log;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\BookRegistPost;
 
 class BookController extends Controller
 {
@@ -28,7 +29,7 @@ class BookController extends Controller
         }
     }
 
-    public function register(Request $request) {
+    public function register(BookRegistPost $request) {
         $data['title'] = $request['title'];
         $data['author'] = $request['author'];
         $data['published_date'] = $request['publishedDate'];
@@ -42,7 +43,7 @@ class BookController extends Controller
         $deletebook = Book::find($id)->delete();
     }
 
-    public function update(Request $request, $id) {
+    public function update(BookRegistPost $request, $id) {
         $data['title'] = $request['title'];
         $data['author'] = $request['author'];
         $data['published_date'] = $request['publishedDate'];

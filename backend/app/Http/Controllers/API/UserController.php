@@ -8,10 +8,11 @@ use Log;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRegistPost;
 
 class UserController extends Controller
 {
-    public function userRegister(Request $request) {
+    public function userRegister(UserRegistPost $request) {
         $data['user_id'] = $request['uid'];
         $data['email'] = $request['email'];
         User::create($data);
@@ -22,7 +23,6 @@ class UserController extends Controller
         $data['displayName'] = $request['displayName'];
         // $data['photoURL'] = $request['photoURL'];
         User::where("user_id",$uid)->update($data);
-        // findメソッドはidカラムを検索？？
         return response()->json($data, 200);
     }
 }
